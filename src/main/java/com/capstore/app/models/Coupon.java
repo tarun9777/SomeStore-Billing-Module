@@ -7,7 +7,7 @@ public class Coupon {
 	private int userId;
     private Date couponEndDate;
     private Date couponStartDate;
-    private int couponAmount; // pd
+    private int couponAmount; 
     private int couponMinOrderAmount;
     private String issuedBy; //{“Admin”,”Merchant”}
     
