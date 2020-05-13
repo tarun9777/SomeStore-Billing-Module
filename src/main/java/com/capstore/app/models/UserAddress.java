@@ -1,6 +1,6 @@
 package com.capstore.app.models;
 
-public class UserAdderss {
+public class UserAddress {
 
 	private int addressId; //(Primary Key)
     private String address_line1;
@@ -58,7 +58,7 @@ public class UserAdderss {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public UserAdderss() {
+	public UserAddress() {
 	}
     
     
