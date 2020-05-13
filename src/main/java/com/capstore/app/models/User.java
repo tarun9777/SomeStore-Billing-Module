@@ -1,16 +1,49 @@
 package com.capstore.app.models;
 
+import java.util.List;
+
+import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@MappedSuperclass
 public class User {
-	
-	private int userId;  //( number auto generated): Primary Key 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userId;  //( number auto generated): Primary Key
     private String name;
-    private String username;  //(min: 3)    
-    private String password;    //(min: 8)
-    private String eMail;
-    private String role;           //(ROLE_CUSTOMER,ROLE_ADMIN,ROLE_MERCHANT) 
+    private String username;  //(min: 3)
+	private String password;    //(min: 8)
+	private String eMail;
+    private String role;           //(ROLE_CUSTOMER,ROLE_ADMIN,ROLE_MERCHANT)
     private boolean isActive;
 	private String securityQuestion;
 	private String securityAnswer;
+	
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity =
+	 * CustomerDetails.class)
+	 * 
+	 * @JoinColumn(name = "user_id", referencedColumnName = "customer_id") private
+	 * List<CustomerDetails> allCustomerDetails;
+	 * 
+	 * @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity =
+	 * MerchantDetails.class)
+	 * 
+	 * @JoinColumn(name = "user_id", referencedColumnName = "merchant_id") private
+	 * List<MerchantDetails> allMerchantDetails;
+	 */
+	
 	public int getUserId() {
 		return userId;
 	}

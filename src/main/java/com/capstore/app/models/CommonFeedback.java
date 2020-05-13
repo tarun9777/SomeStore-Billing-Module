@@ -1,10 +1,22 @@
 package com.capstore.app.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "common_feedback")
 public class CommonFeedback {
 
+	@Id
+	@Column(name = "feedback_id")
 	private int feedbackId;  //(Primary Key)
+	@Column(name = "feedback_subject")
     private String feedbackSubject;
+	@Column(name = "feedback_message")
     private String feedbackMessage;
+	
     private int feedbackForUserId;  //(Foreign Key)
 	public int getFeedbackId() {
 		return feedbackId;
