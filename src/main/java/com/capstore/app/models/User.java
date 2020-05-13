@@ -20,6 +20,7 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
 	private int userId;  //( number auto generated): Primary Key
     private String name;
     private String username;  //(min: 3)

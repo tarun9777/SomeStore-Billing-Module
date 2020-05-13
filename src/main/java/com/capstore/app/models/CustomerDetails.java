@@ -1,5 +1,6 @@
 package com.capstore.app.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,9 @@ public class CustomerDetails extends User {
     private String alternatePhoneNumber;
     @Column(name = "alternate_email")
     private String alternateEmail;
+    @Column(name="address")
+    private String address;
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = CommonFeedback.class)
     Set<CommonFeedback> feedbacks;
 	/*
@@ -28,6 +32,10 @@ public class CustomerDetails extends User {
 	 */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
     private Cart customerCart;
+    
+    @OneToMany
+    private List<Orders> orders;
+    
 	public Cart getCustomerCart() {
 		return customerCart;
 	}
