@@ -4,23 +4,26 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="orders")
 public class Orders {
 	
+	@Id
 	@Column(name="order_id")
 	private long orderId;
-	@Column(name="order_id")
+	@Column(name="shipping_address")
 	private String shippingAddress;
+	@Column(name="total_amount")
 	private double totalAmount;
+	@Column(name="total_discount")
 	private double totalDiscount;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,targetEntity = User.class)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
