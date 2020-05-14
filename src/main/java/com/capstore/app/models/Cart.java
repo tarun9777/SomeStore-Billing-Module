@@ -22,11 +22,23 @@ public class Cart {
 	private int userID;  //(references cust_id)
 	@Column(name = "type")
     private String type;  //(“Wishlist”,”cart”)
+	@Column(name = "product_id")
+	private int productId;
+	@Column(name = "product_quantity")
+	private int quantity;
 	
-	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, targetEntity = Product.class)
-	private List<Product> products;
-	
-	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public int getUserID() {
 		return userID;
 	}
@@ -46,12 +58,6 @@ public class Cart {
 		this.type = type;
 	}
 	
-	public List<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 	public Cart() {
 	}
 

@@ -22,11 +22,13 @@ public class MerchantDetails extends User{
 	@Column(name = "alternate_email")
 	private String alternateEmail;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Product.class)
-	Set<Product> products;
-	/*
-	 * Set<Order> orders; Set<UserAddress> addresses; Set<Coupon> coupons;
-	 *  Set<CommonFeedback> feedbacks;
-	 */
+	private Set<Product> products;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = UserAddress.class)
+	private Set<UserAddress> addresses;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ProductFeedback.class)
+	private Set<ProductFeedback> pF;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Coupon.class)
+	Set<Coupon> coupons;
     @Column(name = "is_approved")
     private boolean isApproved;
     @Column(name = "rating")
@@ -53,18 +55,13 @@ public class MerchantDetails extends User{
 	
 	public Set<Product> getProducts() { return products; } 
 	public void setProducts(Set<Product> products) { this.products = products; }
-
-	/*
-	 * public Set<Order> getOrders() { return orders; } public void
-	 * setOrders(Set<Order> orders) { this.orders = orders; } public
-	 * Set<UserAddress> getAddresses() { return addresses; } public void
-	 * setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }
-	 * public Set<Coupon> getCoupons() { return coupons; } public void
-	 * setCoupons(Set<Coupon> coupons) { this.coupons = coupons; }
-	 * 
-	 *  public Set<CommonFeedback> getFeedbacks() { return feedbacks; } public void
-	 * setFeedbacks(Set<CommonFeedback> feedbacks) { this.feedbacks = feedbacks; }
-	 */
+	
+	public Set<UserAddress> getAddresses() { return addresses; } 
+	public void setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }
+	
+	public Set<Coupon> getCoupons() { return coupons; }
+	public void setCoupons(Set<Coupon> coupons) { this.coupons = coupons; }
+	 
 	public boolean isApproved() {
 		return isApproved;
 	}
@@ -76,6 +73,13 @@ public class MerchantDetails extends User{
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	public Set<ProductFeedback> getProductFeedback() {
+		return pF;
+	}
+	public void setProductFeedback(Set<ProductFeedback> productFeedback) {
+		this.pF = productFeedback;
 	}
 	public MerchantDetails() {
 	}

@@ -31,20 +31,6 @@ public class User {
 	private String securityQuestion;
 	private String securityAnswer;
 	
-	/*
-	 * @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity =
-	 * CustomerDetails.class)
-	 * 
-	 * @JoinColumn(name = "user_id", referencedColumnName = "customer_id") private
-	 * List<CustomerDetails> allCustomerDetails;
-	 * 
-	 * @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity =
-	 * MerchantDetails.class)
-	 * 
-	 * @JoinColumn(name = "user_id", referencedColumnName = "merchant_id") private
-	 * List<MerchantDetails> allMerchantDetails;
-	 */
-	
 	public int getUserId() {
 		return userId;
 	}

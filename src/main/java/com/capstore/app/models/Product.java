@@ -2,9 +2,12 @@ package com.capstore.app.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +33,8 @@ public class Product {
     private int noOfProducts;
 	@Column(name = "product_info")
     private String productInfo;
+	@Column(name = "discount")
+	private int discount;
 	@Column(name = "product_category")
     private String productCategory;
 	@Column(name = "product_activated")
@@ -40,10 +45,26 @@ public class Product {
     private boolean featured;
 	@Column(name = "product_merchant_id")
     private int productMerchantId;
-    //Set<ProductFeedback> feedbacks;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ProductFeedback.class)
+	Set<ProductFeedback> productfeedbacks;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
+    private Set<Cart> customerCarts;
+	
     
+	public Set<Cart> getCustomerCarts() {
+		return customerCarts;
+	}
+	public void setCustomerCarts(Set<Cart> customerCarts) {
+		this.customerCarts = customerCarts;
+	}
 	public int getProductId() {
 		return productId;
+	}
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
@@ -127,10 +148,10 @@ public class Product {
 		this.productMerchantId = productMerchantId;
 	}
 
-	/*
-	 * public Set<ProductFeedback> getFeedbacks() { return feedbacks; } public void
-	 * setFeedbacks(Set<ProductFeedback> feedbacks) { this.feedbacks = feedbacks; }
-	 */
+	
+	public Set<ProductFeedback> getFeedbacks() { return productfeedbacks; } 
+	public void setFeedbacks(Set<ProductFeedback> feedbacks) { this.productfeedbacks = feedbacks; }
+	 
 	public Product() {
 	}
 	public Product(int productId, String productName, int productMerchantId) {

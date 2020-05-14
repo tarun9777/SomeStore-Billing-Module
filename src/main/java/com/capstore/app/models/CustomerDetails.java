@@ -25,22 +25,37 @@ public class CustomerDetails extends User {
     private String address;
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = CommonFeedback.class)
-    Set<CommonFeedback> feedbacks;
-	/*
-	 * Set<Order> orders; Set<UserAddress> addresses;
-	 * Set<ProductFeedback> productFeedbacks; Set<Cart> list;
-	 */
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
-    private Cart customerCart;
+    Set<CommonFeedback> cCF;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ProductFeedback.class)
+    Set<ProductFeedback> cPF;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Order.class)
+	Set<Order> orders;
+	 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
+    private Set<Cart> cC;
     
-    @OneToMany
-    private List<Orders> orders;
     
-	public Cart getCustomerCart() {
-		return customerCart;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = UserAddress.class)
+    private Set<UserAddress> addresses;
+    
+    
+	public Set<Order> getOrders() {
+		return orders;
 	}
-	public void setCustomerCart(Cart customerCart) {
-		this.customerCart = customerCart;
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Set<Cart> getCustomerCarts() {
+		return cC;
+	}
+	public void setCustomerCarts(Set<Cart> customerCarts) {
+		this.cC = customerCarts;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -54,27 +69,22 @@ public class CustomerDetails extends User {
 	public void setAlternatePhoneNumber(String alternatePhoneNumber) {
 		this.alternatePhoneNumber = alternatePhoneNumber;
 	}
-	public String getAlternateEmail() {
+	public String getAlternateEmail() { 
 		return alternateEmail;
 	}
 	public void setAlternateEmail(String alternateEmail) {
 		this.alternateEmail = alternateEmail;
 	}
 	
-	public Set<CommonFeedback> getFeedbacks() { return feedbacks; } 
-	public void setFeedbacks(Set<CommonFeedback> feedbacks) { this.feedbacks = feedbacks; }
+	public Set<CommonFeedback> getFeedbacks() { return cCF; } 
+	public void setFeedbacks(Set<CommonFeedback> feedbacks) { this.cCF = feedbacks; }
 	
+	Set<UserAddress> getAddresses() { return addresses; } 
+	public void setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }
 	
-	/*
-	 * public Set<Order> getOrders() { return orders; } public void
-	 * setOrders(Set<Order> orders) { this.orders = orders; } public
-	 * Set<UserAddress> getAddresses() { return addresses; } public void
-	 * setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }
-	 * public Set<ProductFeedback> getProductFeedbacks() { return productFeedbacks;
-	 * } public void setProductFeedbacks(Set<ProductFeedback> productFeedbacks) {
-	 * this.productFeedbacks = productFeedbacks; } public Set<Cart> getList() {
-	 * return list; } public void setList(Set<Cart> list) { this.list = list; }
-	 */
+	public Set<ProductFeedback> getProductFeedbacks() { return cPF;} 
+	public void setProductFeedbacks(Set<ProductFeedback> productFeedbacks) { this.cPF = productFeedbacks; }
+	
 	public CustomerDetails() {
 	}
 

@@ -6,44 +6,82 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "common_feedback")
-public class CommonFeedback {
-
+@Table(name = "product_feedback")
+public class ProductFeedback {
 	@Id
-	@Column(name = "feedback_id")
-	private int feedbackId;  //(Primary Key)
+	@Column(name = "feedback_Id")
+	private Integer feedbackId;
 	@Column(name = "feedback_subject")
     private String feedbackSubject;
 	@Column(name = "feedback_message")
     private String feedbackMessage;
-	@Column(name = "user_id")
-	private int userId;
-	
-    private int feedbackForUserId;  //(Foreign Key)
-	public int getFeedbackId() {
+    @Column(name = "product_id")
+    private int productId;
+    @Column(name = "user_id")
+    private int userId;	
+    
+	public Integer getFeedbackId() {
 		return feedbackId;
 	}
-	public void setFeedbackId(int feedbackId) {
+
+
+
+	public void setFeedbackId(Integer feedbackId) {
 		this.feedbackId = feedbackId;
 	}
+
+
+
 	public String getFeedbackSubject() {
 		return feedbackSubject;
 	}
+
+
+
 	public void setFeedbackSubject(String feedbackSubject) {
 		this.feedbackSubject = feedbackSubject;
 	}
+
+
+
 	public String getFeedbackMessage() {
 		return feedbackMessage;
 	}
+
+
+
 	public void setFeedbackMessage(String feedbackMessage) {
 		this.feedbackMessage = feedbackMessage;
 	}
-	public int getFeedbackForUserId() {
-		return feedbackForUserId;
+
+
+
+	public int getProductId() {
+		return productId;
 	}
-	public void setFeedbackForUserId(int feedbackForUserId) {
-		this.feedbackForUserId = feedbackForUserId;
+
+
+
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
-	public CommonFeedback() {
+
+
+
+	public int getUserId() {
+		return userId;
 	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+
+	public ProductFeedback() {
+	} 
+     
+     
 }
