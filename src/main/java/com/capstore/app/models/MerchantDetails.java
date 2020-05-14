@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,7 +34,22 @@ public class MerchantDetails extends User{
     private boolean isApproved;
     @Column(name = "rating")
     private int rating;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Inventory.class)
+    private int inventoryId;
 	
+	
+	public Set<ProductFeedback> getpF() {
+		return pF;
+	}
+	public void setpF(Set<ProductFeedback> pF) {
+		this.pF = pF;
+	}
+	public int getInventoryId() {
+		return inventoryId;
+	}
+	public void setInventoryId(int inventoryId) {
+		this.inventoryId = inventoryId;
+	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

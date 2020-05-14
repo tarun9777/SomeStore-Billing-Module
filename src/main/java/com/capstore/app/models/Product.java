@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -49,8 +50,22 @@ public class Product {
 	Set<ProductFeedback> productfeedbacks;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
     private Set<Cart> customerCarts;
-	
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Inventory.class)
+    private int inventoryId;
     
+    
+	public Set<ProductFeedback> getProductfeedbacks() {
+		return productfeedbacks;
+	}
+	public void setProductfeedbacks(Set<ProductFeedback> productfeedbacks) {
+		this.productfeedbacks = productfeedbacks;
+	}
+	public int getInventoryId() {
+		return inventoryId;
+	}
+	public void setInventoryId(int inventoryId) {
+		this.inventoryId = inventoryId;
+	}
 	public Set<Cart> getCustomerCarts() {
 		return customerCarts;
 	}

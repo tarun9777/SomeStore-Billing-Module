@@ -57,6 +57,25 @@ public class CustomerDetails extends User {
 	public void setCustomerCarts(Set<Cart> customerCarts) {
 		this.cC = customerCarts;
 	}
+	
+	public Set<CommonFeedback> getcCF() {
+		return cCF;
+	}
+	public void setcCF(Set<CommonFeedback> cCF) {
+		this.cCF = cCF;
+	}
+	public Set<ProductFeedback> getcPF() {
+		return cPF;
+	}
+	public void setcPF(Set<ProductFeedback> cPF) {
+		this.cPF = cPF;
+	}
+	public Set<Cart> getcC() {
+		return cC;
+	}
+	public void setcC(Set<Cart> cC) {
+		this.cC = cC;
+	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
