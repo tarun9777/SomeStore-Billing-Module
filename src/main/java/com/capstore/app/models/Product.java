@@ -44,8 +44,8 @@ public class Product {
     private boolean status;
 	@Column(name = "featured")
     private boolean featured;
-	@Column(name = "product_merchant_id")
-    private int productMerchantId;
+	@Column(name = "user_id")
+    private int userId;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = ProductFeedback.class)
 	Set<ProductFeedback> productfeedbacks;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cart.class)
@@ -157,10 +157,10 @@ public class Product {
 		this.featured = featured;
 	}
 	public int getProductMerchantId() {
-		return productMerchantId;
+		return userId;
 	}
 	public void setProductMerchantId(int productMerchantId) {
-		this.productMerchantId = productMerchantId;
+		this.userId = productMerchantId;
 	}
 
 	
@@ -173,7 +173,7 @@ public class Product {
 		super();
 		this.productId = productId;
 		this.productName = productName;
-		this.productMerchantId = productMerchantId;
+		this.userId = productMerchantId;
 	}
 	@Override
 	public String toString() {
@@ -182,7 +182,7 @@ public class Product {
 				+ noOfProductViewed + ", productBrand=" + productBrand + ", noOfProducts=" + noOfProducts
 				+ ", productInfo=" + productInfo + ", productCategory=" + productCategory + ", productActivated="
 				+ productActivated + ", status=" + status + ", featured=" + featured + ", productMerchantId="
-				+ productMerchantId + "]";
+				+ userId + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -197,7 +197,7 @@ public class Product {
 		result = prime * result + productId;
 		result = prime * result + ((productImage == null) ? 0 : productImage.hashCode());
 		result = prime * result + ((productInfo == null) ? 0 : productInfo.hashCode());
-		result = prime * result + productMerchantId;
+		result = prime * result + userId;
 		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(productPrice);
@@ -245,7 +245,7 @@ public class Product {
 				return false;
 		} else if (!productInfo.equals(other.productInfo))
 			return false;
-		if (productMerchantId != other.productMerchantId)
+		if (userId != other.userId)
 			return false;
 		if (productName == null) {
 			if (other.productName != null)
