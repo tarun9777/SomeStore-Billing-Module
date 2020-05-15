@@ -1,5 +1,7 @@
 package com.capstore.app;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,12 +13,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.capstore.app.models.Cart;
+import com.capstore.app.models.Coupon;
 import com.capstore.app.models.CustomerDetails;
 import com.capstore.app.models.MerchantDetails;
 import com.capstore.app.models.Order;
 import com.capstore.app.models.Product;
+import com.capstore.app.repository.CouponsRepository;
 import com.capstore.app.repository.CustomerRepository;
 import com.capstore.app.repository.MerchantRepository;
+import com.capstore.app.repository.OrderRepository;
+import com.capstore.app.service.BillingService;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -26,6 +32,15 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private MerchantRepository merchantRepository;
+	
+	@Autowired
+	OrderRepository orderRepository;
+	
+	@Autowired
+	CouponsRepository couponsRepository;
+	
+	@Autowired
+	BillingService billingService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -67,6 +82,22 @@ public class Application implements CommandLineRunner {
 		merchantRepository.save(merchant1);
 		merchantRepository.save(merchant2);
 		
+		//--------------------------------------------------------------------------------------
+		//-----APPLYING COUPONS------//
+		Order order = new Order(500, "Ordered", null, 12, null);
+		orderRepository.save(order);
+		
+		String start = "2020-04-22";
+		String end = "2020-06-31";
+		
+		Date startDate = Date.valueOf(start);
+		Date endDate = Date.valueOf(end);
+		Coupon coupon = new Coupon("abc", endDate, startDate, 100, 250, "Merchant");
+		couponsRepository.save(coupon);
+		
+		Order finalOrderObj = billingService.isCouponValid("abc", order);
+		System.out.println("Amount after discount is: " + finalOrderObj.getOrderAmount());
+		System.out.println("SUCCESSS!!!");
 		
 		
 	}
