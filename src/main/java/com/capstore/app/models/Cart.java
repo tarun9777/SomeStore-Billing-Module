@@ -26,11 +26,22 @@ public class Cart {
 	@Column(name = "product_quantity")
 	private int quantity;
 	
+	@Column(name="product_id")
+	private int productId;
 	
-	public Cart(String type, int quantity) {
+	
+	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public Cart(String type, int quantity, int productId) {
 		//super();
 		this.type = type;
 		this.quantity = quantity;
+		this.productId = productId;
 	}
 	public int getQuantity() {
 		return quantity;

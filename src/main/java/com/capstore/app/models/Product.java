@@ -61,21 +61,10 @@ public class Product {
 	@Column(name = "featured")
     private boolean featured;
 	
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="product_id")
-	Set<ProductFeedback> productfeedbacks;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="product_id")
-    private Set<Cart> customerCarts;
-    
- 
-    
     
 	public Product(String productName, String productImage, double productPrice, int productRating,
 			int noOfProductViewed, String productBrand, int noOfProducts, String productInfo, int discount,
-			String productCategory, boolean productActivated, boolean status, boolean featured,
-			Set<ProductFeedback> productfeedbacks, Set<Cart> customerCarts) {
+			String productCategory, boolean productActivated, boolean status, boolean featured) {
 		super();
 		this.productName = productName;
 		this.productImage = productImage;
@@ -90,25 +79,12 @@ public class Product {
 		this.productActivated = productActivated;
 		this.status = status;
 		this.featured = featured;
-		this.productfeedbacks = productfeedbacks;
-		this.customerCarts = customerCarts;
+		
 		
 	}
 	
 	
-	public Set<ProductFeedback> getProductfeedbacks() {
-		return productfeedbacks;
-	}
-	public void setProductfeedbacks(Set<ProductFeedback> productfeedbacks) {
-		this.productfeedbacks = productfeedbacks;
-	}
 	
-	public Set<Cart> getCustomerCarts() {
-		return customerCarts;
-	}
-	public void setCustomerCarts(Set<Cart> customerCarts) {
-		this.customerCarts = customerCarts;
-	}
 	public int getProductId() {
 		return productId;
 	}
@@ -195,9 +171,7 @@ public class Product {
 	}
 	
 	
-	public Set<ProductFeedback> getFeedbacks() { return productfeedbacks; } 
-	public void setFeedbacks(Set<ProductFeedback> feedbacks) { this.productfeedbacks = feedbacks; }
-	 
+
 	public Product() {
 	}
 	public Product(int productId, String productName, int productMerchantId) {

@@ -17,15 +17,16 @@ public class ProductFeedback {
     private String feedbackSubject;
 	@Column(name = "feedback_message")
     private String feedbackMessage;
-	public Integer getFeedbackId() {
-		return feedbackId;
-	}
+	
+	@Column(name="product_id")
+	private int productId;
 
-
-	public ProductFeedback(String feedbackSubject, String feedbackMessage) {
+	public ProductFeedback(String feedbackSubject, String feedbackMessage,int productId) {
 		super();
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
+		this.productId = productId;
+		
 	}
 
 
